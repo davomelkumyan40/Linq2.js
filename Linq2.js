@@ -83,13 +83,15 @@ class Enumerable {
     } else {
       return [...values];
     }
-    notice(this.#collection);
   }
 
   //Only if types are numeric
   //Average
   average() {
-    throw new Error("Not implemented yet");
+    if(this.all((el, i, arr) => typeof el === "number")){
+      return this.aggrigate((acc, curr) => acc + curr) / this.count();
+    } 
+    throw new Error("No number type found in collection");
   }
 
   //Cast
