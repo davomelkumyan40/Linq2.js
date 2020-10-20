@@ -1,6 +1,6 @@
 "use stict";
 
-var DEBUG_MOD = true;
+var DEBUG_MOD = false;
 //TODO finish all LINQ functions
 
 //Array Extender | string Extender
@@ -55,8 +55,10 @@ class Enumerable {
   }
 
   //Append
-  append() {
-    throw new Error("Not implemented yet");
+  append(item) {
+    let temp = new Enumerable(...this.#collection);
+    temp.#collection.push(item);
+    return temp;
   }
 
   //AsEnumerable
@@ -64,9 +66,9 @@ class Enumerable {
     if (!values.length) {
       return [];
     } else if (values.length === 1) {
-      if (!values[0].length) {
+      if (!values[0].length) {F
         if (typeof values[0] === "number") {
-          return new Array(values[0]);
+          return new ArrFay(values[0]);
         } else if (typeof values[0] === "string") {
           return [values[0]];
         } else {
@@ -83,6 +85,7 @@ class Enumerable {
     notice(this.#collection);
   }
 
+  //Only if types are numeric
   //Average
   average() {
     throw new Error("Not implemented yet");
