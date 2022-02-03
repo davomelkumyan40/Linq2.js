@@ -1,4 +1,4 @@
-"use stict";
+"use strict";
 
 var DEBUG_MOD = false;
 //TODO finish all LINQ functions
@@ -6,7 +6,7 @@ var DEBUG_MOD = false;
 
 //Array Extender | string Extender
 const asEnumerable = function () {
-  return new Enumerable(this);
+  return new Enumerable(...this);
 };
 Array.prototype.asEnumerable = asEnumerable;
 String.prototype.asEnumerable = asEnumerable;
@@ -19,7 +19,7 @@ if (DEBUG_MOD) {
   };
 }
 
-class Enumerable {
+export default class Enumerable {
   //private field
   #collection = undefined;
   #queryQueue = []; // TODO finish as in C#
@@ -29,7 +29,9 @@ class Enumerable {
     if (DEBUG_MOD) {
       notice(++i);
     }
-    this.#collection = this.asEnumerable(...values);
+    if (values.length === 1 && values[0] === undefined)
+      return;
+    this.#collection = this.asEnumerable(values);
   }
 
   //Aggrigate
@@ -50,8 +52,11 @@ class Enumerable {
     throw new Error("Predicate not passed");
   }
 
+  //TODO
   //Any
-  any() {
+  any(predicate) {
+    if (typeof predicate === "function")
+      return this.firstOrDefault(predicate) && true;
     return this.count() > 0;
   }
 
@@ -59,38 +64,28 @@ class Enumerable {
   append(item) {
     let temp = new Enumerable(...this.#collection);
     temp.#collection.push(item);
-    return temp;
+    this.#collection = temp.#collection;
+    return this;
   }
 
   //AsEnumerable
-  asEnumerable(...values) {
-    if (!values.length) {
-      return [];
-    } else if (values.length === 1) {
-      if (!values[0].length) {F
-        if (typeof values[0] === "number") {
-          return new ArrFay(values[0]);
-        } else if (typeof values[0] === "string") {
-          return [values[0]];
-        } else {
-          return [];
-        }
-      } else if (values[0].length === 1) {
-        return [values[0][0]];
-      } else {
+  asEnumerable(values) {
+    if (!values || !values.length) return [];
+    if (values.length === 1) {
+      if (typeof values[0] === "string")
         return [...values[0]];
-      }
-    } else {
-      return [...values];
+      if (typeof values[0] === "number")
+        return new Array(values[0]);
     }
+    return [...values];
   }
 
   //Only if types are numeric
   //Average
   average() {
-    if(this.all((el, i, arr) => typeof el === "number")){
+    if (this.all((el, i, arr) => typeof el === "number")) {
       return this.aggrigate((acc, curr) => acc + curr) / this.count();
-    } 
+    }
     throw new Error("No number type found in collection");
   }
 
@@ -105,13 +100,27 @@ class Enumerable {
   }
 
   //Contains
-  contains() {
-    throw new Error("Not implemented yet");
+  contains(value) {
+    if (typeof value === "number") {
+      for (let i = 0; i < this.count(); i++)
+        if (this.#collection[i] === value) return true;
+      return false;
+    }
+    if (typeof value === "string") {
+      if (this.all((v) => v.length === 1))
+        return this.aggrigate((a, c) => a + c).includes(value)
+      for (let i = 0; i < this.count(); i++) {
+        if (this.#collection[i].includes)
+          if (this.#collection[i].includes(value))
+            return true;
+      }
+    }
   }
 
   //Count
   count(predicate) {
     if (typeof predicate === "function") {
+      return this.#collection.filter(predicate).length;
     } else return this.#collection.length;
   }
 
@@ -127,8 +136,10 @@ class Enumerable {
   }
 
   //ElementAt
-  elementAt() {
-    throw new Error("Not implemented yet");
+  elementAt(index) {
+    if (this.#collection.length > index)
+      throw new Error(`Index [${index}] is out of range`);
+    return this.#collection[index];
   }
 
   //ElementAtOrDefault
@@ -147,16 +158,29 @@ class Enumerable {
   }
 
   //First
-  first() {
-    if (this.any()) {
-      return this.#collection[0];
-    } else throw new Error("Sequence contains no elements");
+  first(predicate) {
+    let result = this.firstOrDefault(predicate);
+    if (result === undefined)
+      throw new Error("Sequence contains no elements");
+    return result;
   }
 
   //FirstOrDefault
-  firstOrDefault() {
-    if (this.any()) return this.#collection[0];
-    else return undefined;
+  firstOrDefault(predicate) {
+    if (!predicate) {
+      if (this.any()) return this.#collection[0];
+      return undefined;
+    }
+    if (typeof predicate === "function") {
+      let result = undefined;
+      this.#collection.forEach((v, i, a) => {
+        if (predicate(v, i, a)) {
+          result = v;
+          return
+        }
+      });
+      return result;
+    }
   }
 
   //GroupBy
@@ -340,4 +364,3 @@ class Enumerable {
   }
 }
 
-export { notice, Enumerable };

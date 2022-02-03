@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e99249bd-4de3-4cb2-a0bb-c366bc8891fc" name="Default Changelist" comment="" />
+    <list default="true" id="93db316d-ccaf-48ee-b92c-fc92f049c34d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/LINQ2JS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LINQ2JS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Linq2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Linq2.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1hTTYxWrzuQj9eTSzLThREDelHf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="24ZQXf1IJfw6WS2vQ00lX8RUZns" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../UnitTestJS" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e99249bd-4de3-4cb2-a0bb-c366bc8891fc" name="Default Changelist" comment="" />
-      <created>1600034134502</created>
+      <changelist id="93db316d-ccaf-48ee-b92c-fc92f049c34d" name="Default Changelist" comment="" />
+      <created>1643835671744</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600034134502</updated>
-      <workItem from="1600034140206" duration="71000" />
+      <updated>1643835671744</updated>
+      <workItem from="1643835673525" duration="2172000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1167" y="215" key="FileChooserDialogImpl" timestamp="1600034208902">
-      <screen x="0" y="0" width="1920" height="1034" />
-    </state>
-    <state x="1167" y="215" key="FileChooserDialogImpl/0.0.1920.1034@0.0.1920.1034" timestamp="1600034208902" />
+    <option name="version" value="3" />
   </component>
 </project>
