@@ -1,34 +1,20 @@
 "use strict";
 
-var DEBUG_MOD = false;
-//TODO finish all LINQ functions
-//some change just for test
-
 //Array Extender | string Extender
 const asEnumerable = function () {
   return new Enumerable(...this);
 };
+
 Array.prototype.asEnumerable = asEnumerable;
 String.prototype.asEnumerable = asEnumerable;
 
-if (DEBUG_MOD) {
-  var i = 0; // global to count tests
-
-  var notice = function (text) {
-    console.log(text);
-  };
-}
-
 export default class Enumerable {
-  //private field
+  //private fields
   #collection = undefined;
-  #queryQueue = []; // TODO finish as in C#
+  #queryQueue = []; // TODO finish 
 
   //tested for first time works good (no bugs)
   constructor(...values) {
-    if (DEBUG_MOD) {
-      notice(++i);
-    }
     if (values.length === 1 && values[0] === undefined)
       return;
     this.#collection = this.asEnumerable(values);
@@ -72,10 +58,10 @@ export default class Enumerable {
   asEnumerable(values) {
     if (!values || !values.length) return [];
     if (values.length === 1) {
-      if (typeof values[0] === "string")
+      if (typeof values[0] === "string" || Array.isArray(values[0]))
         return [...values[0]];
       if (typeof values[0] === "number")
-        return new Array(values[0]);
+        return [values[0]];
     }
     return [...values];
   }
@@ -249,8 +235,11 @@ export default class Enumerable {
   }
 
   //Range
-  range() {
-    throw new Error("Not implemented yet");
+  static range(start, count) {
+    let temp = [start];
+    for (let i = 0; i < count - 1; i++)
+      temp.push(++start);
+    return new Enumerable(temp);
   }
 
   //Repeat
